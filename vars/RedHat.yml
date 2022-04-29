@@ -6,7 +6,7 @@ bind_packages:
   - "{{ ( bind_python_version == '3' ) | ternary( 'python3-dns', 'python-dns' ) }}"
   - bind
   - bind-utils
-  - dnspython
+  # - dnspython  # TODO: remove later
 
 bind_service: named
 
@@ -34,3 +34,12 @@ bind_session_keyfile: "/run/named/session.key"
 # Custom location for zone files
 bind_zone_dir: "{{ bind_dir }}"
 bind_secondary_dir: "{{ bind_dir }}/secondary"
+
+# sysctl vars
+_sysctl_requirements:
+  default:
+    - procps
+  RedHat:
+    - procps-ng
+
+sysctl_requirements: "{{ _sysctl_requirements[ansible_os_family] | default(_sysctl_requirements['default'] ) }}"

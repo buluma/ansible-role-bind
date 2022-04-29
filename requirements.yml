@@ -1,5 +1,5 @@
 ---
 roles:
   - name: buluma.bootstrap
-  - name: buluma.dns
+  - name: buluma.sysctl
 collections:
