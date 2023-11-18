@@ -5,4 +5,4 @@
 repository:
   description: Setup ISC BIND as an authoritative DNS server for one or more domains (primary and/or secondary).
   homepage: https://buluma.github.io/
-  topics: dns, networking, system, ansible, molecule, tox, playbook, hacktoberfest
+  topics: dns, networking, system, ansible, molecule, tox, playbook
