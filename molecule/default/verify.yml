@@ -4,12 +4,11 @@
   gather_facts: false
 
   tasks:
-
     # Only collect network facts to reduce setup time
     - name: Gathering Facts
       ansible.builtin.setup:
         gather_subset:
-          - 'network'
+          - "network"
 
     - name: Set local_dns variable for dig
       ansible.builtin.set_fact:

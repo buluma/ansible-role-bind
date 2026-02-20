@@ -105,7 +105,7 @@
     group: "{{ bind_group }}"
     mode: 0640
     setype: named_conf_t
-    validate: 'named-checkconf %s'
+    validate: "named-checkconf %s"
   become: yes
   notify: Reload bind
   tags: bind

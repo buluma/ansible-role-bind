@@ -3,13 +3,13 @@
 
 bind_zones:
   # Primary server for domain example.com (use zone type autodetection)
-  - name: 'example.com'
+  - name: "example.com"
     primaries:
       - 10.11.0.1
     networks:
-      - '192.0.2'
+      - "192.0.2"
     ipv6_networks:
-      - '2001:db9::/48'
+      - "2001:db9::/48"
     name_servers:
       - ns1.acme-inc.com.
       - ns2.acme-inc.com.
@@ -17,27 +17,27 @@ bind_zones:
     hosts:
       - name: srv001
         ip: 192.0.2.1
-        ipv6: '2001:db9::1'
+        ipv6: "2001:db9::1"
         aliases:
           - www
       - name: srv002
         ip: 192.0.2.2
-        ipv6: '2001:db9::2'
+        ipv6: "2001:db9::2"
       - name: mail001
         ip: 192.0.2.10
-        ipv6: '2001:db9::3'
+        ipv6: "2001:db9::3"
     mail_servers:
       - name: mail001
         preference: 10
   # Primary server for domain acme-inc.com (specify zone type explicitly)
-  - name: 'acme-inc.com'
+  - name: "acme-inc.com"
     type: primary
     primaries:
       - 10.11.0.1
     networks:
-      - '10.11'
+      - "10.11"
     ipv6_networks:
-      - '2001:db8::/48'
+      - "2001:db8::/48"
     name_servers:
       - ns1
       - ns2
@@ -90,7 +90,7 @@ bind_zones:
     text:
       - name: _kerberos
         text: KERBEROS.ACME-INC.COM
-      - name: '@'
+      - name: "@"
         text:
-          - 'some text'
-          - 'more text'
+          - "some text"
+          - "more text"
