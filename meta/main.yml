@@ -4,7 +4,7 @@ galaxy_info:
   role_name: bind
   description: 'Setup ISC BIND as an authoritative DNS server for one or more domains (primary and/or secondary).'
   license: Apache-2.0
-  min_ansible_version: '2.1o
+  min_ansible_version: '2.1o'
   platforms:
     - name: Debian
       versions:
