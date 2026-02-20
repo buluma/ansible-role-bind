@@ -24,10 +24,10 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: buluma.bootstrap
@@ -45,10 +45,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 
 # List of zones for which this name server is authoritative
 bind_zones: []
-
 # List of acls.
 bind_acls: []
-
 # Key binding for secondary servers
 bind_dns_keys: []
 #  - name: primary_key
@@ -78,7 +76,6 @@ bind_allow_query:
 
 # A key-value list mapping server-IPs to TSIG keys for signing requests
 bind_key_mapping: {}
-
 # Determines whether recursion should be allowed. Typically, an authoritative
 # name server should have recursion turned OFF.
 bind_recursion: false
@@ -90,7 +87,6 @@ bind_forward_only: false
 
 # List of name servers to forward DNS requests to.
 bind_forwarders: []
-
 # DNS round robin order (random or cyclic)
 bind_rrset_order: "random"
 
@@ -106,7 +102,6 @@ bind_dnssec_enable: true
 bind_dnssec_validation: true
 
 bind_extra_include_files: []
-
 # SOA information
 bind_zone_ttl: "1W"
 bind_zone_time_to_refresh: "1D"

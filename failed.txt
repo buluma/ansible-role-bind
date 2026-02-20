@@ -1,0 +1,2 @@
+ansible-role-bind [generator]: ERROR: Unhandled exception when retrieving 'DEFAULT_LOCAL_TMP': [Errno 1] Operation not permitted: '/Users/shadowwalker/.ansible/tmp/ansible-local-82760ze4z75wv'
+ansible-role-bind [ansible-lint]: [35mtasks/zones.yml[0m:105:1 [2mTask/Handler: Create reverse lookup zone file[0m [0m [31m[34m]8;;https://docs.ansible.com/projects/lint/rules/name/\name[prefix]]8;;\[0m[2m:[0m [31mTask name should start with 'zones | '.[0m [35mtasks/zones.yml[0m:130:1 [2mTask/Handler: Create reverse IPv6 lookup zone file[0m [0m 
