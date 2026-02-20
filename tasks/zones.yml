@@ -92,11 +92,13 @@
     - "{{ bind_zones }}"
   loop_control:
     label: "{{ item.name }}"
-  when: >
+  when: > # noqa yaml[line-length]
     (item.create_forward_zones is not defined or item.create_forward_zones) and
-    ((item.type is defined and item.type == 'primary') or
-    (item.type is not defined and item.primaries is defined and
-    (host_all_addresses | intersect(item.primaries) | length > 0)))
+    (
+      (item.type is defined and item.type == 'primary') or
+      (item.type is not defined and item.primaries is defined and
+      (host_all_addresses | intersect(item.primaries) | length > 0))
+    )
   notify: Reload bind
   tags: bind
 
@@ -117,7 +119,7 @@
       skip_missing: true
   loop_control:
     label: "{{ item.1 }}"
-  when: >
+  when: > # noqa yaml[line-length]
     (item.create_reverse_zones is not defined or item.create_reverse_zones) and
     ((item[0].type is defined and item[0].type == 'primary') or
     (item[0].type is not defined and item[0].primaries is defined and
@@ -142,7 +144,7 @@
       skip_missing: true
   loop_control:
     label: "{{ item.1 }}"
-  when: >
+  when: > # noqa yaml[line-length]
     (item.create_reverse_zones is not defined or item.create_reverse_zones) and
     ((item[0].type is defined and item[0].type == 'primary') or
     (item[0].type is not defined and item[0].primaries is defined and
