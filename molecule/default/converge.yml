@@ -1,7 +1,6 @@
----
-- name: Converge
-  hosts: all
+- hosts: all
+  name: Converge
   tasks:
-    - name: "Include buluma.bind"
-      ansible.builtin.include_role:
-        name: "buluma.bind"
+  - ansible.builtin.include_role:
+      name: buluma.bind
+    name: Include buluma.bind
