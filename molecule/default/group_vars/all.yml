@@ -1,23 +1,23 @@
 ---
 bind_acls:
-  - match_list:
-      - 10.11.0.0/16
-    name: acl1
+- match_list:
+  - 10.11.0.0/16
+  name: acl1
 bind_allow_query:
-  - any
+- any
 bind_check_names: master ignore
 bind_dns64: true
 bind_forwarders:
-  - 8.8.8.8
-  - 8.8.4.4
+- 8.8.8.8
+- 8.8.4.4
 bind_listen_ipv4:
-  - any
+- any
 bind_listen_ipv6:
-  - any
+- any
 bind_query_log: data/query.log
 bind_recursion: true
 bind_statistics_allow:
-  - any
+- any
 bind_statistics_channels: true
 bind_statistics_host: '{{ ansible_default_ipv4.address }}'
 bind_zone_dir: /var/local/named-zones

@@ -1,92 +1,92 @@
 ---
 bind_zones:
-  - hostmaster_email: admin
-    hosts:
-      - aliases:
-          - www
-        ip: 192.0.2.1
-        ipv6: 2001:db9::1
-        name: srv001
-      - ip: 192.0.2.2
-        ipv6: 2001:db9::2
-        name: srv002
-      - ip: 192.0.2.10
-        ipv6: 2001:db9::3
-        name: mail001
-    ipv6_networks:
-      - 2001:db9::/48
-    mail_servers:
-      - name: mail001
-        preference: 10
-    name: example.com
-    name_servers:
-      - ns1.acme-inc.com.
-      - ns2.acme-inc.com.
-    networks:
-      - 192.0.2
-    primaries:
-      - 10.11.0.1
-  - hosts:
-      - ip: 10.11.0.1
-        name: ns1
-      - ip: 10.11.0.2
-        name: ns2
-      - aliases:
-          - www
-        ip: 10.11.1.1
-        ipv6: 2001:db8::1
-        name: srv001
-      - aliases:
-          - mysql
-        ip: 10.11.1.2
-        ipv6: 2001:db8::2
-        name: srv002
-      - aliases:
-          - smtp
-          - mail-in
-        ip: 10.11.2.1
-        ipv6: 2001:db8::d:1
-        name: mail001
-      - ip: 10.11.2.2
-        ipv6: 2001:db8::d:2
-        name: mail002
-      - aliases:
-          - imap
-          - mail-out
-        ip: 10.11.2.3
-        ipv6: 2001:db8::d:3
-        name: mail003
-      - ip: 10.11.0.10
-        name: srv010
-      - ip: 10.11.0.11
-        name: srv011
-      - ip: 10.11.0.12
-        name: srv012
-    ipv6_networks:
-      - 2001:db8::/48
-    mail_servers:
-      - name: mail001
-        preference: 10
-      - name: mail002
-        preference: 20
-    name: acme-inc.com
-    name_servers:
-      - ns1
-      - ns2
-    networks:
-      - '10.11'
-    primaries:
-      - 10.11.0.1
-    services:
-      - name: _ldap._tcp
-        port: 88
-        target: srv010
-        weight: 100
+- hostmaster_email: admin
+  hosts:
+  - aliases:
+    - www
+    ip: 192.0.2.1
+    ipv6: 2001:db9::1
+    name: srv001
+  - ip: 192.0.2.2
+    ipv6: 2001:db9::2
+    name: srv002
+  - ip: 192.0.2.10
+    ipv6: 2001:db9::3
+    name: mail001
+  ipv6_networks:
+  - 2001:db9::/48
+  mail_servers:
+  - name: mail001
+    preference: 10
+  name: example.com
+  name_servers:
+  - ns1.acme-inc.com.
+  - ns2.acme-inc.com.
+  networks:
+  - 192.0.2
+  primaries:
+  - 10.11.0.1
+- hosts:
+  - ip: 10.11.0.1
+    name: ns1
+  - ip: 10.11.0.2
+    name: ns2
+  - aliases:
+    - www
+    ip: 10.11.1.1
+    ipv6: 2001:db8::1
+    name: srv001
+  - aliases:
+    - mysql
+    ip: 10.11.1.2
+    ipv6: 2001:db8::2
+    name: srv002
+  - aliases:
+    - smtp
+    - mail-in
+    ip: 10.11.2.1
+    ipv6: 2001:db8::d:1
+    name: mail001
+  - ip: 10.11.2.2
+    ipv6: 2001:db8::d:2
+    name: mail002
+  - aliases:
+    - imap
+    - mail-out
+    ip: 10.11.2.3
+    ipv6: 2001:db8::d:3
+    name: mail003
+  - ip: 10.11.0.10
+    name: srv010
+  - ip: 10.11.0.11
+    name: srv011
+  - ip: 10.11.0.12
+    name: srv012
+  ipv6_networks:
+  - 2001:db8::/48
+  mail_servers:
+  - name: mail001
+    preference: 10
+  - name: mail002
+    preference: 20
+  name: acme-inc.com
+  name_servers:
+  - ns1
+  - ns2
+  networks:
+  - '10.11'
+  primaries:
+  - 10.11.0.1
+  services:
+  - name: _ldap._tcp
+    port: 88
+    target: srv010
+    weight: 100
+  text:
+  - name: _kerberos
+    text: KERBEROS.ACME-INC.COM
+  - name: '@'
     text:
-      - name: _kerberos
-        text: KERBEROS.ACME-INC.COM
-      - name: '@'
-        text:
-          - some text
-          - more text
-    type: primary
+    - some text
+    - more text
+  type: primary
