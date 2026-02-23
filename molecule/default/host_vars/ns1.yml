@@ -1,3 +1,4 @@
+---
 bind_zones:
   - hostmaster_email: admin
     hosts:

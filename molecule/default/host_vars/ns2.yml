@@ -1,3 +1,4 @@
+---
 bind_zones:
   - ipv6_networks:
       - 2001:db9::/48

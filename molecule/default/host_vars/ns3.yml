@@ -1,3 +1,4 @@
+---
 bind_dnssec_validation: false
 bind_zones:
   - forwarders:
