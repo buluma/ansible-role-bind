@@ -11,23 +11,23 @@ Setup ISC BIND as an authoritative DNS server for one or more domains (primary a
 This example is taken from [`molecule/default/converge.yml`](https://github.com/buluma/ansible-role-bind/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
-- hosts: all
-  name: Converge
-  tasks:
-  - ansible.builtin.include_role:
-      name: buluma.bind
-    name: Include buluma.bind
+  - hosts: all
+    name: Converge
+    tasks:
+      - ansible.builtin.include_role:
+          name: buluma.bind
+        name: Include buluma.bind
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-bind/blob/master/molecule/default/prepare.yml):
 
 ```yaml
-- become: true
-  gather_facts: true
-  hosts: all
-  name: Prepare
-  roles:
-  - role: buluma.bootstrap
+  - become: true
+    gather_facts: true
+    hosts: all
+    name: Prepare
+    roles:
+      - role: buluma.bootstrap
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -39,12 +39,12 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ```yaml
 bind_acls: []
 bind_allow_query:
-- localhost
+  - localhost
 bind_allow_recursion:
-- any
+  - any
 bind_dns64: false
 bind_dns64_clients:
-- any
+  - any
 bind_dns_keys: []
 bind_dnssec_enable: true
 bind_dnssec_validation: true
@@ -53,23 +53,23 @@ bind_forward_only: false
 bind_forwarders: []
 bind_key_mapping: {}
 bind_listen_ipv4:
-- 127.0.0.1
+  - 127.0.0.1
 bind_listen_ipv4_port:
-- 53
+  - 53
 bind_listen_ipv6:
-- ::1
+  - ::1
 bind_listen_ipv6_port:
-- 53
+  - 53
 bind_log: data/named.run
-bind_python_version: '{{ bind_default_python_version }}'
+bind_python_version: "{{ bind_default_python_version }}"
 bind_recursion: false
 bind_rrset_order: random
 bind_statistics_allow:
-- 127.0.0.1
+  - 127.0.0.1
 bind_statistics_channels: false
 bind_statistics_host: 127.0.0.1
 bind_statistics_port: 8053
-bind_zone_file_mode: '0640'
+bind_zone_file_mode: "0640"
 bind_zone_minimum_ttl: 1D
 bind_zone_time_to_expire: 1W
 bind_zone_time_to_refresh: 1D
