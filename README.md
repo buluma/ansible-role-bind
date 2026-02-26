@@ -42,12 +42,12 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ---
 bind_acls: []
 bind_allow_query:
-- localhost
+  - localhost
 bind_allow_recursion:
-- any
+  - any
 bind_dns64: false
 bind_dns64_clients:
-- any
+  - any
 bind_dns_keys: []
 bind_dnssec_enable: true
 bind_dnssec_validation: true
@@ -56,19 +56,19 @@ bind_forward_only: false
 bind_forwarders: []
 bind_key_mapping: {}
 bind_listen_ipv4:
-- 127.0.0.1
+  - 127.0.0.1
 bind_listen_ipv4_port:
-- 53
+  - 53
 bind_listen_ipv6:
-- ::1
+  - ::1
 bind_listen_ipv6_port:
-- 53
+  - 53
 bind_log: data/named.run
 bind_python_version: "{{ bind_default_python_version }}"
 bind_recursion: false
 bind_rrset_order: random
 bind_statistics_allow:
-- 127.0.0.1
+  - 127.0.0.1
 bind_statistics_channels: false
 bind_statistics_host: 127.0.0.1
 bind_statistics_port: 8053
