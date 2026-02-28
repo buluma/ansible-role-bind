@@ -1,9 +1,9 @@
 ---
-- name: Set list of all host IP addresses
+- name: zones | Set list of all host IP addresses
   ansible.builtin.set_fact:
     host_all_addresses: "{{ ansible_all_ipv4_addresses | union(ansible_all_ipv6_addresses) }}"
   tags: bind
-- name: Read forward zone hashes
+- name: zones | Read forward zone hashes
   ansible.builtin.shell: grep -s "^; Hash:" {{ bind_zone_dir }}/{{ item.name }} || true
   changed_when: false
   check_mode: false
@@ -14,7 +14,7 @@
   tags: bind
   with_items:
     - "{{ bind_zones }}"
-- name: Create dict of forward hashes
+- name: zones | Create dict of forward hashes
   ansible.builtin.set_fact:
     forward_hashes: "{{ forward_hashes | default([]) + [{'hash': item.stdout | default(), 'name': item.item.name}] }}"
   loop_control:
@@ -23,7 +23,7 @@
   tags: bind
   with_items:
     - "{{ forward_hashes_temp.results }}"
-- name: Read reverse ipv4 zone hashes
+- name: zones | Read reverse ipv4 zone hashes
   ansible.builtin.shell: grep -s "^; Hash:" {{ bind_zone_dir }}/{{ ('.'.join(item.1.replace(item.1+'.','').split('.')[::-1])) }}.in-addr.arpa || true
   changed_when: false
   check_mode: false
@@ -37,7 +37,7 @@
     - networks
     - flags:
       skip_missing: true
-- name: Create dict of reverse hashes
+- name: zones | Create dict of reverse hashes
   ansible.builtin.set_fact:
     reverse_hashes: "{{ reverse_hashes|default([]) + [ {'hash': item.0.stdout|default(), 'network': item.1} ] }}"
   loop_control:
@@ -47,7 +47,7 @@
   with_subelements:
     - "{{ reverse_hashes_temp.results }}"
     - item
-- name: Read reverse ipv6 zone hashes
+- name: zones | Read reverse ipv6 zone hashes
   ansible.builtin.shell: grep -s "^; Hash:" {{ bind_zone_dir }}/{{ (item.1 | ipaddr('revdns'))[-(9+(item.1|regex_replace('^.*/','')|int)//2):-1] }} || true
   changed_when: false
   check_mode: false
@@ -61,7 +61,7 @@
     - ipv6_networks
     - flags:
       skip_missing: true
-- name: Create dict of reverse ipv6 hashes
+- name: zones | Create dict of reverse ipv6 hashes
   ansible.builtin.set_fact:
     reverse_hashes_ipv6: "{{ reverse_hashes_ipv6|default([]) + [ {'hash': item.0.stdout|default(), 'network': item.1} ] }}"
   loop_control:
@@ -71,7 +71,7 @@
   with_subelements:
     - "{{ reverse_hashes_ipv6_temp.results }}"
     - item
-- name: Create forward lookup zone file
+- name: zones | Create forward lookup zone file
   ansible.builtin.template:
     dest: "{{ bind_zone_dir }}/{{ item.name }}"
     group: "{{ bind_group }}"
@@ -89,7 +89,7 @@
     defined and item.primaries is defined and\n  (host_all_addresses | intersect(item.primaries) | length > 0))\n)\n"
   with_items:
     - "{{ bind_zones }}"
-- name: Create reverse lookup zone file
+- name: zones | Create reverse lookup zone file
   ansible.builtin.template:
     dest: "{{ bind_zone_dir }}/{{ ('.'.join(item.1.replace(item.1+'.','').split('.')[::-1])) }}.in-addr.arpa"
     group: "{{ bind_group }}"
@@ -110,7 +110,7 @@
     - networks
     - flags:
       skip_missing: true
-- name: Create reverse IPv6 lookup zone file
+- name: zones | Create reverse IPv6 lookup zone file
   ansible.builtin.template:
     dest: "{{ bind_zone_dir }}/{{ (item.1 | ipaddr('revdns'))[-(9+(item.1|regex_replace('^.*/','')|int)//2):-1] }}"
     group: "{{ bind_group }}"
