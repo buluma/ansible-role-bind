@@ -73,27 +73,27 @@
     name: IPv6 Reverse lookups
   - ansible.builtin.assert:
       that:
-      - lookup('dig', 'acme-inc.com/NS', local_dns).split(',') | sort | 
+      - lookup('dig', 'acme-inc.com/NS', local_dns).split(',') | sort |
         join(',') == 'ns1.acme-inc.com.,ns2.acme-inc.com.'
-      - lookup('dig', 'example.com/NS', local_dns).split(',')  | sort | 
+      - lookup('dig', 'example.com/NS', local_dns).split(',')  | sort |
         join(',') == 'ns1.acme-inc.com.,ns2.acme-inc.com.'
     name: NS records lookup
   - ansible.builtin.assert:
       that:
-      - lookup('dig', 'acme-inc.com/MX', local_dns).split(',') | sort | 
+      - lookup('dig', 'acme-inc.com/MX', local_dns).split(',') | sort |
         join(',') == '10 mail001.acme-inc.com.,20 mail002.acme-inc.com.'
-      - lookup('dig', 'example.com/MX', local_dns).split(',')  | sort | 
+      - lookup('dig', 'example.com/MX', local_dns).split(',')  | sort |
         join(',') == '10 mail001.example.com.'
     name: MX records lookup
   - ansible.builtin.assert:
       that:
-      - lookup('dig', '_ldap._tcp.acme-inc.com/SRV', local_dns) == '0 100 88 
+      - lookup('dig', '_ldap._tcp.acme-inc.com/SRV', local_dns) == '0 100 88
         srv010.acme-inc.com.'
     name: Service records lookup
   - ansible.builtin.assert:
       that:
-      - lookup('dig', '_kerberos.acme-inc.com/TXT', local_dns) == 
+      - lookup('dig', '_kerberos.acme-inc.com/TXT', local_dns) ==
         'KERBEROS.ACME-INC.COM'
-      - lookup('dig', 'acme-inc.com/TXT', local_dns).split(',') | sort | 
+      - lookup('dig', 'acme-inc.com/TXT', local_dns).split(',') | sort |
         join(',') == 'more text,some text'
     name: TXT records lookup
