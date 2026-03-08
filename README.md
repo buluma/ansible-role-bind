@@ -70,7 +70,7 @@ bind_rrset_order: random
 bind_statistics_allow:
   - 127.0.0.1
 bind_statistics_channels: false
-bind_statistics_host: 127.0.0.1
+bind_statistics_host: "127.0.0.1"
 bind_statistics_port: 8053
 bind_zone_file_mode: "0640"
 bind_zone_minimum_ttl: 1D
@@ -127,3 +127,4 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
+
