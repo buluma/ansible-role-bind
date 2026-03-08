@@ -85,7 +85,8 @@
     label: "{{ item.name }}"
   notify: Reload bind
   tags: bind
-  when: "(item.create_forward_zones is not defined or item.create_forward_zones) and (\n  (item.type is defined and item.type == 'primary') or\n  (item.type is not
+  when:
+    "(item.create_forward_zones is not defined or item.create_forward_zones) and (\n  (item.type is defined and item.type == 'primary') or\n  (item.type is not
     defined and item.primaries is defined and\n  (host_all_addresses | intersect(item.primaries) | length > 0))\n)\n"
   with_items:
     - "{{ bind_zones }}"
@@ -103,7 +104,8 @@
     label: "{{ item.1 }}"
   notify: Reload bind
   tags: bind
-  when: "(item.create_reverse_zones is not defined or item.create_reverse_zones) and ((item[0].type is defined and item[0].type == 'primary') or (item[0].type is
+  when:
+    "(item.create_reverse_zones is not defined or item.create_reverse_zones) and ((item[0].type is defined and item[0].type == 'primary') or (item[0].type is
     not defined and item[0].primaries is defined and (host_all_addresses | intersect(item[0].primaries) | length > 0)))\n"
   with_subelements:
     - "{{ bind_zones }}"
@@ -124,7 +126,8 @@
     label: "{{ item.1 }}"
   notify: Reload bind
   tags: bind
-  when: "(item.create_reverse_zones is not defined or item.create_reverse_zones) and ((item[0].type is defined and item[0].type == 'primary') or (item[0].type is
+  when:
+    "(item.create_reverse_zones is not defined or item.create_reverse_zones) and ((item[0].type is defined and item[0].type == 'primary') or (item[0].type is
     not defined and item[0].primaries is defined and (host_all_addresses | intersect(item[0].primaries) | length > 0)))\n"
   with_subelements:
     - "{{ bind_zones }}"
