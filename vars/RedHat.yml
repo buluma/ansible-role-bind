@@ -9,7 +9,7 @@ bind_auth_file: "{{ bind_conf_dir }}/{{ auth_file }}"
 bind_bindkeys_file: /etc/named.iscdlv.key
 bind_conf_dir: /etc/named
 bind_config: /etc/named.conf
-bind_default_python_version: "{{ (ansible_facts.distribution_major_version == '8') | ternary('3', '2') }}"
+bind_default_python_version: "{{ (ansible_facts['distribution_major_version'] == '8') | ternary('3', '2') }}"
 bind_default_zone_files:
   - /etc/named.root.key
   - /etc/named.rfc1912.zones
@@ -26,4 +26,4 @@ bind_secondary_dir: "{{ bind_dir }}/secondary"
 bind_service: named
 bind_session_keyfile: /run/named/session.key
 bind_zone_dir: "{{ bind_dir }}"
-sysctl_requirements: "{{ _sysctl_requirements[ansible_facts.os_family] | default(_sysctl_requirements['default']) }}"
+sysctl_requirements: "{{ _sysctl_requirements[ansible_facts['os_family']] | default(_sysctl_requirements['default']) }}"

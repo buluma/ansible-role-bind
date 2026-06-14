@@ -3,11 +3,11 @@
   ansible.builtin.include_vars: "{{ item }}"
   tags: bind
   with_first_found:
-    - "{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_major_version }}.yml"
-    - "{{ ansible_facts.distribution }}.yml"
-    - "{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml"
-    - "{{ ansible_facts.os_family }}.yml"
-    - "{{ ansible_distribution_file_variety }}-{{ ansible_facts.distribution_major_version }}.yml"
+    - "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+    - "{{ ansible_facts['distribution'] }}.yml"
+    - "{{ ansible_facts['os_family'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+    - "{{ ansible_facts['os_family'] }}.yml"
+    - "{{ ansible_distribution_file_variety }}-{{ ansible_facts['distribution_major_version'] }}.yml"
     - "{{ ansible_distribution_file_variety }}.yml"
 - name: Check `primaries` or `forwarders` was set for each zone
   ansible.builtin.assert:
@@ -24,7 +24,7 @@
   become: true
   changed_when: false
   tags: bind
-  when: ansible_facts.os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 - name: Assert that all XFR keys exist in the key list
   ansible.builtin.assert:
     that: bind_dns_keys | selectattr("name","equalto",bind_key_mapping[item]) | list | count > 0

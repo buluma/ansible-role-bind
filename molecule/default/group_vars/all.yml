@@ -19,7 +19,7 @@ bind_recursion: true
 bind_statistics_allow:
   - any
 bind_statistics_channels: true
-bind_statistics_host: "{{ ansible_facts.default_ipv4.address }}"
+bind_statistics_host: "{{ ansible_default_ipv4.address }}"
 bind_zone_dir: /var/local/named-zones
 bind_zone_file_mode: "0660"
 bind_zone_minimum_ttl: 2D
