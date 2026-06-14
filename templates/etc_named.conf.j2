@@ -107,7 +107,7 @@ include "{{ file }}";
 
 {% if bind_zone.create_forward_zones is not defined or bind_zone.create_forward_zones %}
 {# Start: set zone type  #}
-{% set _all_addresses = ansible_all_ipv4_addresses | union(ansible_all_ipv6_addresses) %}
+{% set _all_addresses = ansible_facts.all_ipv4_addresses | union(ansible_facts.all_ipv6_addresses) %}
 {% if bind_zone.type is defined and bind_zone.type == 'primary' %}
 {% set _type = 'primary' %}
 {% elif bind_zone.type is defined and bind_zone.type == 'secondary' %}
