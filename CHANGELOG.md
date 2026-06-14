@@ -1,5 +1,14 @@
 # Changelog
 
+## [26.6.0](https://github.com/buluma/ansible-role-bind/tree/26.6.0) (2026-06-14)
+
+[Full Changelog](https://github.com/buluma/ansible-role-bind/compare/0.1.0...26.6.0)
+
+**Merged pull requests:**
+
+- Bump actions/checkout from 3 to 6 [\#9](https://github.com/buluma/ansible-role-bind/pull/9) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump buluma/dependabot-auto-merge-action from 2.1.2 to 2.1.4 [\#8](https://github.com/buluma/ansible-role-bind/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.1.0](https://github.com/buluma/ansible-role-bind/tree/0.1.0) (2022-04-29)
 
 [Full Changelog](https://github.com/buluma/ansible-role-bind/compare/cb4cf3d4d9bd08112e90d4f591919efebeead764...0.1.0)
