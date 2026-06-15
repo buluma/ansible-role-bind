@@ -8,7 +8,6 @@ bind_dns64: false
 bind_dns64_clients:
   - any
 bind_dns_keys: []
-bind_dnssec_enable: true
 bind_dnssec_validation: true
 bind_extra_include_files: []
 bind_forward_only: false
