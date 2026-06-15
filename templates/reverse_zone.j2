@@ -97,5 +97,5 @@ $ORIGIN {{ ('.'.join(item.1.replace(item.1+'.','').split('.')[::-1])) }}.in-addr
 {% endif %}
 {% endfor %}
 {% else %}
-{{ ('.'.join(ansible_facts['default_ipv4'].address.replace(item.1+'.','').split('.')[::-1])).ljust(16) }}{{ (host.ttl|string).rjust(6) if host.ttl is defined else ''.ljust(6) }} IN  PTR  {{ ansible_facts['hostname'] }}.{{ _zone_data['domain'] }}.
+{{ ('.'.join((ansible_facts['default_ipv4'] | default({'address': '127.0.0.1'})).address.replace(item.1+'.','').split('.')[::-1])).ljust(16) }}{{ (host.ttl|string).rjust(6) if host.ttl is defined else ''.ljust(6) }} IN  PTR  {{ ansible_facts['hostname'] }}.{{ _zone_data['domain'] }}.
 {% endif %}

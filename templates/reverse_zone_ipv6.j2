@@ -92,5 +92,5 @@ $ORIGIN {{ (item.1 | ipaddr('revdns'))[-(9+(item.1|regex_replace('^.*/','')|int)
 {% endif %}
 {% endfor %}
 {% else %}
-{{ ansible_facts['default_ipv6'].address | ipaddr('revdns') }}{{ (host.ttl|string).rjust(6) if host.ttl is defined else ''.ljust(6) }} IN  PTR  {{ ansible_facts['hostname'] }}.{{ _zone_data['domain'] }}.
+{{ (ansible_facts['default_ipv6'] | default({'address': '::1'})).address | ipaddr('revdns') }}{{ (host.ttl|string).rjust(6) if host.ttl is defined else ''.ljust(6) }} IN  PTR  {{ ansible_facts['hostname'] }}.{{ _zone_data['domain'] }}.
 {% endif %}

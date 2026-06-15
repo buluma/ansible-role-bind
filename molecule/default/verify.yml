@@ -8,7 +8,7 @@
           - network
       name: Gathering Facts
     - ansible.builtin.set_fact:
-        local_dns: "{{ '@' + ansible_facts['default_ipv4'].address }}"
+        local_dns: "{{ '@' + (ansible_facts['default_ipv4'] | default({'address': '127.0.0.1'})).address }}"
       name: Set local_dns variable for dig
     - ansible.builtin.assert:
         that:

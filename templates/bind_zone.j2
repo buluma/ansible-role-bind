@@ -122,7 +122,7 @@ $TTL {{ _zone_data['ttl'] }}
 {% endif %}
 {% endfor %}
 {% else %}
-{{ ansible_facts['hostname'].ljust(26) }} IN A     {{ ansible_facts['default_ipv4'].address }}
+{{ ansible_facts['hostname'].ljust(26) }} IN A     {{ (ansible_facts['default_ipv4'] | default({'address': '127.0.0.1'})).address }}
 {% endif %}
 {% for service in _zone_data['services'] %}
 {{ service.name.ljust(20) }}{{ (service.ttl|string).rjust(6) if service.ttl is defined else ''.ljust(6) }} IN  SRV    {{ service.priority|default('0') }} {{ service.weight|default('0') }} {{ service.port }} {{ service.target }}
