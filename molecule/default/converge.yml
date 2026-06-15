@@ -1,8 +1,10 @@
 ---
 - name: Converge
   hosts: all
-  name: Converge
+  become: true
+  gather_facts: true
+
   tasks:
-    - ansible.builtin.include_role:
+    - name: Include buluma.bind
+      ansible.builtin.include_role:
         name: buluma.bind
-      name: Include buluma.bind

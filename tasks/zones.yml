@@ -1,7 +1,7 @@
 ---
 - name: zones | Set list of all host IP addresses
   ansible.builtin.set_fact:
-    host_all_addresses: "{{ ansible_facts['all_ipv4_addresses'] | union(ansible_facts['all_ipv6_addresses']) }}"
+    host_all_addresses: "{{ (ansible_facts['all_ipv4_addresses'] | default([])) | union(ansible_facts['all_ipv6_addresses'] | default([])) }}"
   tags: bind
 - name: zones | Read forward zone hashes
   ansible.builtin.shell: grep -s "^; Hash:" {{ bind_zone_dir }}/{{ item.name }} || true
