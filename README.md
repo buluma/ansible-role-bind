@@ -12,22 +12,33 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- hosts: all
-  name: Converge
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: true
+
   tasks:
-    - ansible.builtin.include_role:
+    - name: Include buluma.bind
+      ansible.builtin.include_role:
         name: buluma.bind
-      name: Include buluma.bind
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-bind/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
-- become: true
-  gather_facts: true
+- name: Prepare
   hosts: all
-  name: Prepare
+  become: true
+  gather_facts: false
+
+  pre_tasks:
+    - name: Install sudo if missing
+      ansible.builtin.raw: "{{ ansible_pkg_mgr | default('dnf') }} install -y sudo"
+      become: false
+      changed_when: false
+      failed_when: false
+
   roles:
     - role: buluma.bootstrap
 ```
@@ -49,7 +60,6 @@ bind_dns64: false
 bind_dns64_clients:
   - any
 bind_dns_keys: []
-bind_dnssec_enable: true
 bind_dnssec_validation: true
 bind_extra_include_files: []
 bind_forward_only: false
@@ -104,13 +114,14 @@ Here is an overview of related roles:
 
 ## [Compatibility](#compatibility)
 
-This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
+This role has been tested on these [container images](https://hub.docker.com/u/buluma):
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
+|[EL](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Fedora](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Ubuntu](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done on:
 
@@ -128,6 +139,3 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 
 [buluma](https://buluma.github.io/)
 
-### Get Help
-- Report issues: https://github.com/buluma/ansible-role-bind/issues/new
-- See docs: https://docs.ansible.com/collection/gallery/ansible-role-bind
