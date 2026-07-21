@@ -1,5 +1,7 @@
 ---
 dependencies: []
+collections:
+  - ansible.utils
 galaxy_info:
   author: buluma
   company: ShadowNet

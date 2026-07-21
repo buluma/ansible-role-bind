@@ -35,3 +35,14 @@
 
   roles:
     - role: buluma.bootstrap
+
+  tasks:
+    - name: Ensure netaddr is present on the controller for the ipaddr filter
+      ansible.builtin.pip:
+        name: netaddr
+        state: present
+      delegate_to: localhost
+      become: false
+      run_once: true
+      vars:
+        ansible_python_interpreter: "{{ ansible_playbook_python }}"
