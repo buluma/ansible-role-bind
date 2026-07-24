@@ -19,7 +19,11 @@ bind_recursion: true
 bind_statistics_allow:
   - any
 bind_statistics_channels: true
-bind_statistics_host: "{{ (ansible_facts['default_ipv4'] | default({'address': '127.0.0.1'})).address }}"
+# A static value, not a live fact: ansible_facts['default_ipv4'] isn't
+# reliably populated at gather-facts time, so this fell back to 127.0.0.1
+# on the first converge but resolved to the container's real (and
+# unpredictable) docker0 address on the second - breaking idempotence.
+bind_statistics_host: "127.0.0.1"
 bind_zone_dir: /var/local/named-zones
 bind_zone_file_mode: "0660"
 bind_zone_minimum_ttl: 2D
