@@ -63,6 +63,7 @@ bind_zones:
       - 192.0.2
     primaries:
       - 10.11.0.1
+    type: primary
   - hosts:
       - ip: 10.11.0.1
         name: ns1
