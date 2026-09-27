@@ -12,12 +12,19 @@
       name: Ensure dnspython is present for the dig lookup plugin
       vars:
         ansible_python_interpreter: "{{ ansible_playbook_python }}"
-    - ansible.builtin.setup:
-        gather_subset:
-          - network
-      name: Gathering Facts
+    - ansible.builtin.command: docker inspect {{ inventory_hostname }}
+      changed_when: false
+      delegate_to: localhost
+      become: false
+      register: docker_inspect
+      name: >-
+        Get the instance's real docker-assigned IP (ansible_facts network
+        gathering is unreliable on these minimal test images - they lack
+        iproute2, so default_ipv4/all_ipv4_addresses never populate; dig
+        itself runs on the controller, so it needs an address the
+        controller can actually reach)
     - ansible.builtin.set_fact:
-        local_dns: "{{ '@' + (ansible_facts['default_ipv4'] | default({'address': '127.0.0.1'})).address }}"
+        local_dns: "@{{ ((docker_inspect.stdout | from_json).0.NetworkSettings.Networks.values() | list | first).IPAddress }}"
       name: Set local_dns variable for dig
     - ansible.builtin.assert:
         that:
