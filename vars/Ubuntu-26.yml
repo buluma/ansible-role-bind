@@ -1,0 +1,7 @@
+---
+# Ubuntu 26.04's BIND package replaced named.conf.default-zones with
+# named.conf.root-hints and uses dns-root-data for the root trust anchor.
+bind_bindkeys_file: /usr/share/dns/root.key
+bind_default_zone_files:
+  - /etc/bind/named.conf.root-hints
+bind_dnssec_validation: auto

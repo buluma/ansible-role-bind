@@ -6,6 +6,7 @@
 auth_file: auth_transfer.conf
 bind_auth_file: "{{ bind_conf_dir }}/{{ auth_file }}"
 bind_bindkeys_file: /usr/share/dns/root.key
+bind_dnssec_validation: auto
 bind_conf_dir: /etc/bind
 bind_config: /etc/bind/named.conf
 bind_default_python_version: "3"
