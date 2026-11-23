@@ -63,6 +63,17 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
   roles:
     - role: buluma.bootstrap
+
+  tasks:
+    - name: Ensure netaddr is present on the controller for the ipaddr filter
+      ansible.builtin.pip:
+        name: netaddr
+        state: present
+      delegate_to: localhost
+      become: false
+      run_once: true
+      vars:
+        ansible_python_interpreter: "{{ ansible_playbook_python }}"
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
